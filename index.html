@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forja & Feixe | Gravação a Laser Premium</title>
+    
+    <!-- Google Fonts: Cinzel (Rústico/Clássico) e Inter (Leitura) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuração -->
+    <script src="js/tailwind.config.js"></script>
+</head>
+<body class="font-inter antialiased selection:bg-laser selection:text-white relative">
+
+    <!-- Cursors -->
+    <div id="laser-cursor"></div>
+    <div id="laser-trail"></div>
+
+    <!-- Header Navbar -->
+    <header class="fixed w-full top-0 z-50 bg-wood-900/80 backdrop-blur-md border-b border-wood-700/50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 interactive">
+                <span class="text-laser font-bold text-2xl tracking-tighter">&lt;/&gt;</span>
+                <h1 class="font-cinzel text-2xl font-bold tracking-widest text-white">FORJA <span class="text-laser">&</span> FEIXE</h1>
+            </div>
+            <nav class="hidden md:flex gap-8 font-cinzel text-sm tracking-widest text-gray-400">
+                <a href="#inicio" class="hover:text-laser transition-colors interactive">Início</a>
+                <a href="#produtos" class="hover:text-laser transition-colors interactive">Produtos</a>
+                <a href="#processo" class="hover:text-laser transition-colors interactive">A Arte</a>
+            </nav>
+            <a href="#contato" class="interactive group relative px-6 py-2 bg-transparent border border-laser text-laser font-cinzel font-bold tracking-wider overflow-hidden">
+                <span class="relative z-10 group-hover:text-wood-900 transition-colors duration-300">Orçamento Rápido</span>
+                <div class="absolute inset-0 bg-laser scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out z-0"></div>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 bg-rustic-pattern bg-cover bg-center bg-fixed overflow-hidden">
+        <div class="smoke-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-wood-900/50 to-wood-900"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <p class="font-cinzel text-laser tracking-[0.3em] mb-4 uppercase text-sm reveal">Precisão Absoluta. Marca Eterna.</p>
+            <h2 class="font-cinzel text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+                SUA MARCA, <br>
+                <span class="etch-text block mt-2">NOSSO FEIXE</span>
+            </h2>
+            <p class="font-inter text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light reveal delay-100">
+                Personalização a laser de alta potência para facas artesanais, copos térmicos, garrafas e couro. A rusticidade do material encontra a tecnologia cirúrgica.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal delay-200">
+                <a href="#produtos" class="interactive px-8 py-4 bg-laser text-wood-900 font-cinzel font-bold tracking-widest hover:bg-laser-glow transition-all hover:shadow-[0_0_30px_rgba(255,94,0,0.5)]">
+                    VER PORTFÓLIO
+                </a>
+                <a href="#contato" class="interactive px-8 py-4 border border-wood-700 text-white font-cinzel font-bold tracking-widest hover:border-laser hover:text-laser transition-all">
+                    SOLICITAR GRAVAÇÃO
+                </a>
+            </div>
+        </div>
+
+        <!-- Laser beam scanning down animation -->
+        <div class="absolute left-0 top-0 w-full h-[2px] bg-laser shadow-[0_0_20px_#ff5e00] animate-[scan_4s_ease-in-out_infinite] opacity-50 pointer-events-none"></div>
+    </section>
+
+    <!-- Laser Divider -->
+    <div class="w-full h-1 bg-wood-900 relative">
+        <div class="laser-line"></div>
+    </div>
+
+    <!-- Products Gallery -->
+    <section id="produtos" class="py-24 bg-wood-900 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h3 class="font-cinzel text-3xl md:text-5xl font-bold text-white mb-4"><span class="text-laser">Forjado</span> na Luz</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto font-light">Nossos feixes operam em frequências específicas para cada material, garantindo um contraste perfeito e uma marca que resiste ao tempo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="product-card bg-wood-800 rounded-lg border border-wood-700 p-4 reveal">
+                    <div class="relative h-80 rounded-md overflow-hidden mb-6 bg-black">
+                        <img src="https://images.unsplash.com/photo-1593623696587-c93f0b2f90a9?q=80&w=800&auto=format&fit=crop" alt="Faca Artesanal" class="w-full h-full object-cover opacity-80 mix-blend-luminosity">
+                        <div class="absolute inset-0 border-2 border-transparent hover:border-laser transition-all duration-300 pointer-events-none"></div>
+                    </div>
+                    <h4 class="font-cinzel text-xl font-bold text-white mb-2 tracking-wider">Cutelaria & Lâminas</h4>
+                    <p class="text-sm text-gray-400 mb-4">Aço damasco, carbono ou inox. Marcamos logotipos, assinaturas ou texturas complexas direto no metal, sem comprometer a têmpera.</p>
+                    <div class="flex justify-between items-center border-t border-wood-700 pt-4">
+                        <span class="text-laser text-xs font-bold tracking-widest uppercase">Metal / Aço</span>
+                        <button class="interactive text-white hover:text-laser transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="product-card bg-wood-800 rounded-lg border border-wood-700 p-4 reveal delay-100">
+                    <div class="relative h-80 rounded-md overflow-hidden mb-6 bg-black">
+                        <img src="https://images.unsplash.com/photo-1614219468902-6019688bc8a4?q=80&w=800&auto=format&fit=crop" alt="Copo Térmico" class="w-full h-full object-cover opacity-80 mix-blend-luminosity">
+                    </div>
+                    <h4 class="font-cinzel text-xl font-bold text-white mb-2 tracking-wider">Copos Térmicos</h4>
+                    <p class="text-sm text-gray-400 mb-4">Remoção cirúrgica da pintura eletrostática, revelando o aço inox por baixo. Perfeito para brindes corporativos e times.</p>
+                    <div class="flex justify-between items-center border-t border-wood-700 pt-4">
+                        <span class="text-laser text-xs font-bold tracking-widest uppercase">Inox Pintado</span>
+                        <button class="interactive text-white hover:text-laser transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="product-card bg-wood-800 rounded-lg border border-wood-700 p-4 reveal delay-200">
+                    <div class="relative h-80 rounded-md overflow-hidden mb-6 bg-black">
+                        <img src="https://images.unsplash.com/photo-1605548230624-8d2d0419c511?q=80&w=800&auto=format&fit=crop" alt="Garrafa Gravada" class="w-full h-full object-cover opacity-80 mix-blend-luminosity">
+                    </div>
+                    <h4 class="font-cinzel text-xl font-bold text-white mb-2 tracking-wider">Garrafas & Couro</h4>
+                    <p class="text-sm text-gray-400 mb-4">Micro-fraturas controladas em vidro para um efeito jateado premium, ou queima de precisão em couro sintético e natural.</p>
+                    <div class="flex justify-between items-center border-t border-wood-700 pt-4">
+                        <span class="text-laser text-xs font-bold tracking-widest uppercase">Vidro / Couro</span>
+                        <button class="interactive text-white hover:text-laser transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processo Section -->
+    <section id="processo" class="py-24 bg-wood-800 relative overflow-hidden border-y border-wood-700">
+        <div class="absolute -right-40 top-0 opacity-5 rotate-45 pointer-events-none">
+            <svg width="600" height="600" viewBox="0 0 100 100" class="fill-laser">
+                <path d="M50 0 L55 20 L75 15 L70 35 L90 40 L75 55 L85 75 L65 70 L55 90 L40 75 L20 85 L25 65 L5 60 L20 45 L5 25 L25 30 L35 10 Z"></path>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h3 class="font-cinzel text-4xl font-bold text-white mb-6">A Ciência por trás da <span class="etch-text">Cicratiz</span></h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full border border-laser flex items-center justify-center shrink-0 text-laser font-bold font-cinzel shadow-[0_0_10px_rgba(255,94,0,0.3)]">01</div>
+                            <div>
+                                <h5 class="text-white font-bold mb-1">Vetorização Perfeita</h5>
+                                <p class="text-sm text-gray-400">Pegamos sua logo ou arte e convertemos em caminhos matemáticos exatos. Sem pixels estourados, apenas linhas puras.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full border border-laser flex items-center justify-center shrink-0 text-laser font-bold font-cinzel shadow-[0_0_10px_rgba(255,94,0,0.3)]">02</div>
+                            <div>
+                                <h5 class="text-white font-bold mb-1">Calibragem de Frequência</h5>
+                                <p class="text-sm text-gray-400">Couro pede calor lento; metal exige pulsações rápidas. Ajustamos a máquina para agredir apenas a camada exata.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full border border-laser flex items-center justify-center shrink-0 text-laser font-bold font-cinzel shadow-[0_0_10px_rgba(255,94,0,0.3)]">03</div>
+                            <div>
+                                <h5 class="text-white font-bold mb-1">Impacto a Laser</h5>
+                                <p class="text-sm text-gray-400">O feixe viaja a milhares de mm/s. O material evapora ou muda de cor molecularmente. O resultado é definitivo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative h-[500px] w-full border border-wood-700 bg-wood-900 rounded-xl flex items-center justify-center overflow-hidden reveal group">
+                    <div class="absolute inset-0 bg-rustic-pattern bg-cover opacity-30"></div>
+                    <div class="relative z-10 w-48 h-48 border border-white/10 rounded-full flex items-center justify-center">
+                        <span class="font-cinzel text-5xl font-black text-transparent -webkit-text-stroke-1 stroke-white/20 relative">
+                            F&F
+                            <div class="absolute top-0 left-0 w-3 h-3 bg-white rounded-full shadow-[0_0_15px_#ff5e00,0_0_30px_#ff9500] animate-[engrave_4s_ease-in-out_infinite]"></div>
+                        </span>
+                    </div>
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,94,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,94,0,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-wood-900 pt-20 pb-10 border-t border-laser/30 relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-laser shadow-[0_0_30px_5px_#ff5e00]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-white mb-6">Pronto para deixar sua <span class="text-laser">marca</span>?</h2>
+            <p class="text-gray-400 mb-10 max-w-xl mx-auto">Atendemos pedidos unitários para presentes especiais e grandes lotes para empresas. Envie sua ideia e fazemos o orçamento na hora.</p>
+            
+            <a href="https://wa.me/5511999999999" target="_blank" class="interactive inline-flex items-center gap-3 px-10 py-5 bg-[#25D366] text-white font-bold tracking-widest rounded-full hover:bg-green-500 hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all transform hover:scale-105">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                FALAR NO WHATSAPP
+            </a>
+
+            <div class="mt-24 pt-8 border-t border-wood-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-wood-700">
+                <p>&copy; 2026 Forja & Feixe. Todos os direitos reservados.</p>
+                <p>Desenvolvido com precisão tecnológica.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts Customizados -->
+    <script src="js/main.js"></script>
+</body>
+</html>
