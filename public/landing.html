@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gravação e Corte a Laser | Personalizados Premium</title>
+<meta name="description" content="Ateliê de gravação e corte a laser: copos, canecas, facas, carteiras e chaveiros em couro legítimo. Precisão que marca, detalhes que eternizam." />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --ember:#ff6a00;
+    --ember-soft:#ff9a3c;
+    --blood:#ff2d1a;
+    --wood:#2a1c12;
+    --wood-deep:#160e08;
+    --ink:#0a0705;
+  }
+  *{cursor:none !important;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(255,106,0,.12), transparent 60%),
+      repeating-linear-gradient(105deg, rgba(255,255,255,.014) 0 2px, transparent 2px 7px),
+      linear-gradient(180deg,var(--ink),var(--wood-deep) 45%,var(--ink));
+    color:#efe4d8;
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    overflow-x:hidden;
+  }
+  .display{font-family:"Georgia","Times New Roman",serif;letter-spacing:.06em;}
+
+  /* ---------- CURSOR LASER ---------- */
+  #dot,#trail{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:9999px;}
+  #dot{width:8px;height:8px;background:var(--ember-soft);
+    box-shadow:0 0 8px var(--ember),0 0 22px var(--ember),0 0 48px var(--blood);
+    transform:translate(-50%,-50%);}
+  #trail{width:34px;height:34px;border:1px solid rgba(255,106,0,.55);
+    background:radial-gradient(circle,rgba(255,106,0,.20),transparent 70%);
+    transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+  .cursor-hot #trail{width:56px;height:56px;border-color:var(--ember-soft);}
+
+  /* ---------- ETCHING TITLES ---------- */
+  .etch{position:relative;display:inline-block;color:transparent;
+    -webkit-text-stroke:1px rgba(255,154,60,.55);}
+  .etch::after{content:attr(data-text);position:absolute;inset:0;
+    color:#ffd9b0;-webkit-text-stroke:0;
+    background:linear-gradient(90deg,#fff2e0,var(--ember-soft),var(--ember));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    clip-path:inset(0 100% 0 0);transition:clip-path 1.4s cubic-bezier(.2,.7,.2,1);}
+  .etch.on::after{clip-path:inset(0 0 0 0);}
+  .etch.on{text-shadow:0 0 34px rgba(255,106,0,.28);}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.on{opacity:1;transform:none;}
+
+  /* ---------- CARDS ---------- */
+  .card{
+    background:linear-gradient(160deg,rgba(64,42,26,.55),rgba(15,10,7,.9));
+    border:1px solid rgba(255,154,60,.16);
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+  .card:hover{transform:translateY(-10px);border-color:var(--ember);
+    box-shadow:0 0 0 1px rgba(255,106,0,.6),0 18px 40px -12px rgba(255,45,26,.55),0 0 70px -10px rgba(255,106,0,.6);}
+  .ph{background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.03) 0 6px, transparent 6px 14px),
+      linear-gradient(150deg,#2b1d13,#0e0906);
+    border:1px solid rgba(255,255,255,.05);}
+
+  .btn-laser{position:relative;background:linear-gradient(90deg,var(--blood),var(--ember));
+    color:#1a0d04;font-weight:800;letter-spacing:.08em;
+    box-shadow:0 0 18px rgba(255,106,0,.55);animation:pulse 2.2s infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 16px rgba(255,106,0,.45)}50%{box-shadow:0 0 42px rgba(255,45,26,.85)}}
+
+  /* ---------- HERO 3D KNIFE + LASER ---------- */
+  #stage{perspective:1400px;perspective-origin:50% 45%;}
+  #knife3d{position:relative;transform-style:preserve-3d;will-change:transform;}
+  #knife3d img{width:100%;display:block;filter:drop-shadow(0 30px 50px rgba(0,0,0,.8)) drop-shadow(0 0 40px rgba(255,106,0,.16));}
+  /* engraving sits over the blade */
+  #engraveBox{position:absolute;left:53%;top:43%;width:40%;height:10%;
+    transform:rotate(-41deg);transform-origin:0 50%;}
+  #engraveText{font-family:"Georgia",serif;font-weight:700;letter-spacing:.14em;
+    font-size:clamp(10px,1.5vw,18px);white-space:nowrap;color:#4a3520;
+    text-shadow:0 1px 0 rgba(255,255,255,.55),0 0 12px rgba(255,106,0,.45);
+    clip-path:inset(0 100% 0 0);}
+  #wbeam{position:absolute;top:-120%;height:340%;width:2px;left:0;
+    background:linear-gradient(180deg,transparent,#fff,var(--ember-soft),var(--blood),transparent);
+    box-shadow:0 0 12px var(--ember),0 0 38px var(--blood);opacity:0;}
+  #wspark{position:absolute;top:50%;left:0;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 0 16px var(--ember),0 0 44px var(--blood);
+    transform:translate(-50%,-50%);opacity:0;}
+  .smoke{position:absolute;inset:0;background:radial-gradient(closest-side,rgba(255,106,0,.18),transparent);
+    filter:blur(30px);}
+  .shot{background:#0d0906;border:1px solid rgba(255,154,60,.14);}
+  .shot img{transition:transform .6s ease, filter .6s ease;}
+  .card:hover .shot img{transform:scale(1.07);filter:saturate(1.15) brightness(1.05);}
+
+  /* ---------- VIDEO SHOWCASE ---------- */
+  #videoFrame{position:relative;border-radius:10px;overflow:hidden;
+    border:1px solid rgba(255,154,60,.22);
+    background:linear-gradient(160deg,rgba(64,42,26,.5),rgba(10,7,5,.95));
+    box-shadow:0 30px 80px -30px rgba(255,45,26,.5),0 0 0 1px rgba(255,106,0,.12) inset;}
+  #videoFrame video{display:block;width:100%;filter:contrast(1.06) saturate(1.1);}
+  #videoFrame::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0,0,0,.65)),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 4px);}
+  #scanline{position:absolute;left:0;right:0;height:2px;pointer-events:none;
+    background:linear-gradient(90deg,transparent,var(--ember-soft),#fff,var(--blood),transparent);
+    box-shadow:0 0 18px var(--ember),0 0 40px var(--blood);
+    animation:scan 5.5s linear infinite;opacity:.85;}
+  @keyframes scan{0%{top:-2%}100%{top:102%}}
+  .corner{position:absolute;width:26px;height:26px;border:2px solid var(--ember);opacity:.7;pointer-events:none;}
+  .corner.tl{top:10px;left:10px;border-right:0;border-bottom:0;}
+  .corner.tr{top:10px;right:10px;border-left:0;border-bottom:0;}
+  .corner.bl{bottom:10px;left:10px;border-right:0;border-top:0;}
+  .corner.br{bottom:10px;right:10px;border-left:0;border-top:0;}
+  #vbadge{position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;
+    background:rgba(10,7,5,.6);border:1px solid rgba(255,106,0,.35);backdrop-filter:blur(6px);
+    font-size:10px;letter-spacing:.28em;color:#ffcfa5;}
+  #vbadge i{width:7px;height:7px;border-radius:50%;background:var(--blood);
+    box-shadow:0 0 10px var(--blood);animation:pulse 1.6s infinite;}
+</style>
+</head>
+<body>
+<div id="trail"></div><div id="dot"></div>
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-black/40 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 ph rounded-sm grid place-items-center text-[10px] tracking-widest text-orange-300">TN</div>
+      <span class="display text-sm tracking-[.3em] text-orange-200/90">ATELIÊ LASER</span>
+    </div>
+    <nav class="hidden md:flex gap-8 text-xs tracking-[.2em] text-orange-100/60 items-center">
+      <a href="#produtos" class="hover:text-orange-300">PRODUTOS</a>
+      <a href="#processo" class="hover:text-orange-300">PROCESSO</a>
+      <a href="#contato" class="hover:text-orange-300">CONTATO</a>
+      <a href="https://www.instagram.com/tatynandocacula/" target="_blank" rel="noopener" class="hover:text-orange-300">INSTAGRAM</a>
+    </nav>
+    <a href="https://wa.me/5518991148196" target="_blank" rel="noopener" class="btn-laser rounded-sm px-4 py-2 text-[11px]">ORÇAMENTO</a>
+  </div>
+</header>
+
+<!-- HERO 300vh -->
+<section id="hero" class="relative" style="height:300vh">
+  <div class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6">
+    <div class="smoke"></div>
+    <p class="relative text-[11px] tracking-[.5em] text-orange-300/70 mb-6">PRECISÃO QUE MARCA</p>
+    <h1 class="relative display text-4xl md:text-6xl text-center mb-10">
+      <span class="etch" data-text="GRAVAÇÃO A LASER">GRAVAÇÃO A LASER</span>
+    </h1>
+
+    <div id="stage" class="relative w-[86vw] max-w-[520px]">
+      <div id="knife3d">
+        <img src="/__l5e/assets-v1/287f756e-f610-48b0-8111-5cfb2dd2cf00/knife3d.png" alt="Faca artesanal com cabo de madeira sendo gravada a laser" />
+        <div id="engraveBox">
+          <div id="engraveText">TATYNANDO</div>
+          <span id="wbeam"></span><span id="wspark"></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="relative mt-8 text-xs tracking-[.3em] text-orange-100/45">ROLE PARA GRAVAR A FACA ↓</p>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos" class="relative max-w-6xl mx-auto px-6 py-28">
+  <h2 class="display text-3xl md:text-5xl mb-4"><span class="etch" data-text="O QUE FAZEMOS">O QUE FAZEMOS</span></h2>
+  <p class="reveal text-orange-100/50 max-w-xl mb-14">Detalhes que eternizam. Cada peça é gravada com alta precisão em nosso ateliê.</p>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="grid"></div>
+</section>
+
+<!-- VIDEO -->
+<section id="video" class="relative max-w-5xl mx-auto px-6 py-24">
+  <h2 class="display text-3xl md:text-5xl mb-6"><span class="etch" data-text="LASER EM AÇÃO">LASER EM AÇÃO</span></h2>
+  <p class="reveal text-orange-100/50 max-w-xl mb-10">Um trecho real da gravação em couro legítimo no nosso ateliê — feixe calibrado, traço firme, acabamento permanente.</p>
+  <div class="reveal" id="videoFrame">
+    <video id="laserVideo" autoplay muted loop playsinline preload="metadata">
+      <source src="/__l5e/assets-v1/ae6c6eb6-9083-40f7-8145-843aca08f712/laser-process.webm" type="video/webm" />
+      <source src="/__l5e/assets-v1/2c0230bf-0f4c-499d-a805-de2b51aa95ef/laser-process.mp4" type="video/mp4" />
+    </video>
+    <span id="scanline"></span>
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <div id="vbadge"><i></i>GRAVANDO AO VIVO</div>
+  </div>
+  <div class="reveal mt-6 grid sm:grid-cols-3 gap-4 text-[10px] tracking-[.25em] text-orange-100/45">
+    <div class="ph rounded-sm p-4">COURO LEGÍTIMO</div>
+    <div class="ph rounded-sm p-4">TRAÇO 0,1 MM</div>
+    <div class="ph rounded-sm p-4">SEM DESGASTE</div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="relative py-28 border-y border-white/5 bg-black/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="display text-3xl md:text-5xl mb-14"><span class="etch" data-text="O PROCESSO">O PROCESSO</span></h2>
+    <div class="grid md:grid-cols-4 gap-6" id="steps"></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="relative max-w-4xl mx-auto px-6 py-32 text-center">
+  <h2 class="display text-3xl md:text-5xl mb-6"><span class="etch" data-text="SUA IDEIA, NOSSA MARCA">SUA IDEIA, NOSSA MARCA</span></h2>
+  <p class="reveal text-orange-100/55 mb-10">Transformamos sua ideia em algo único e inesquecível.</p>
+  <div class="reveal flex flex-wrap justify-center gap-4">
+    <a href="https://wa.me/5518991148196" target="_blank" rel="noopener" class="btn-laser rounded-sm px-8 py-4 text-sm">FALAR NO WHATSAPP</a>
+    <a href="https://www.instagram.com/tatynandocacula/" target="_blank" rel="noopener" class="rounded-sm px-8 py-4 text-sm border border-orange-400/40 text-orange-200 hover:bg-orange-500/10">INSTAGRAM</a>
+  </div>
+  <div class="reveal mt-14 grid sm:grid-cols-3 gap-4 text-xs tracking-[.2em] text-orange-100/45">
+    <div class="ph rounded-sm p-6">ALTA PRECISÃO</div>
+    <div class="ph rounded-sm p-6">PRODUÇÃO PRÓPRIA</div>
+    <div class="ph rounded-sm p-6">FEITO COM AMOR</div>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 py-10 text-center text-[11px] tracking-[.3em] text-orange-100/30">
+  ATELIÊ DE PERSONALIZAÇÃO A LASER © <span id="y"></span>
+</footer>
+
+<script>
+/* CURSOR */
+const dot=document.getElementById('dot'),trail=document.getElementById('trail');
+let mx=innerWidth/2,my=innerHeight/2,tx=mx,ty=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;
+  dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;});
+(function loop(){tx+=(mx-tx)*.14;ty+=(my-ty)*.14;
+  trail.style.transform=`translate(${tx}px,${ty}px) translate(-50%,-50%)`;
+  requestAnimationFrame(loop);})();
+document.addEventListener('mouseover',e=>{
+  document.body.classList.toggle('cursor-hot', !!e.target.closest('a,button,.card'));
+});
+
+/* CARDS */
+const A='/__l5e/assets-v1/';
+const produtos=[
+ ['COPOS TÉRMICOS','Nome gravado com precisão, acabamento que não sai.',A+'519e0a48-2fdc-4c9d-8396-0df1461b11ac/copo.jpg'],
+ ['GARRAFAS TÉRMICAS','Personalize do seu jeito e torne cada detalhe único.',A+'742c00a1-b458-4056-8682-ac79c5d2cd51/garrafa.jpg'],
+ ['CARTEIRAS EM COURO','Produção própria com qualidade, durabilidade e estilo.',A+'a27c5151-2278-4dd8-8bfb-e44a7a4d7eb8/carteira.jpg'],
+ ['CHAVEIROS EM COURO','Acabamento premium para um toque de exclusividade.',A+'5a1c05b0-9f03-41aa-99b6-ed4b91fbb1f5/chaveiro.jpg'],
+ ['FACAS E CANIVETES','Gravação a laser com alta precisão em cada detalhe.',A+'f62332ac-dc18-4f9e-b678-83e285283165/facas.jpg'],
+ ['CANETAS PERSONALIZADAS','Assinatura gravada a laser, presente elegante em estojo premium.',A+'1a5c2052-35ad-4831-a08d-27113130a41e/caneta.jpg']
+];
+document.getElementById('grid').innerHTML=produtos.map(([t,d,src])=>`
+ <article class="card reveal rounded-md p-5">
+   <div class="shot rounded-sm aspect-[4/3] mb-5 overflow-hidden">
+     <img src="${src}" alt="${t}" loading="lazy" class="w-full h-full object-cover" />
+   </div>
+   <h3 class="display text-lg text-orange-200 mb-2">${t}</h3>
+   <p class="text-sm text-orange-100/45 leading-relaxed">${d}</p>
+ </article>`).join('');
+
+const steps=[['01','BRIEFING'],['02','ARTE'],['03','GRAVAÇÃO'],['04','ENTREGA']];
+document.getElementById('steps').innerHTML=steps.map(([n,t])=>`
+ <div class="card reveal rounded-md p-6">
+   <div class="text-orange-400 text-3xl display mb-3">${n}</div>
+   <div class="text-xs tracking-[.25em] text-orange-100/60">${t}</div>
+ </div>`).join('');
+
+/* REVEAL + ETCH */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.25});
+document.querySelectorAll('.reveal,.etch').forEach(el=>io.observe(el));
+
+/* HERO SCROLL: FACA 3D + LASER GRAVANDO */
+const hero=document.getElementById('hero'),knife=document.getElementById('knife3d'),
+      eText=document.getElementById('engraveText'),wbeam=document.getElementById('wbeam'),
+      wspark=document.getElementById('wspark');
+function onScroll(){
+  const r=hero.getBoundingClientRect();
+  const total=hero.offsetHeight-innerHeight;
+  const p=Math.min(1,Math.max(0,(-r.top)/total));
+  /* rotação 3D da faca conforme o scroll */
+  const rx=18-p*24, ry=-26+p*34, rz=-6+p*6, s=.92+p*.12;
+  knife.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${s})`;
+  /* laser escrevendo da esquerda para a direita */
+  const w=eText.getBoundingClientRect().width||1;
+  eText.style.clipPath=`inset(0 ${100-p*100}% 0 0)`;
+  const x=p*w;
+  wbeam.style.left=x+'px';wspark.style.left=x+'px';
+  const on=(p>0.01&&p<0.99)?1:0;
+  wbeam.style.opacity=on;wspark.style.opacity=on;
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+document.getElementById('y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
