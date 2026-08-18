@@ -1,0 +1,43 @@
+/* css/style.css */
+body { background-color: #1a120b; color: #e5e5e5; overflow-x: hidden; cursor: none; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1a120b; }
+::-webkit-scrollbar-thumb { background: #ff5e00; border-radius: 4px; }
+
+#laser-cursor {
+    position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+    background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px 2px #ff9500, 0 0 20px 5px #ff5e00;
+    transition: width 0.2s, height 0.2s; mix-blend-mode: screen;
+}
+#laser-trail {
+    position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+    border: 1px solid rgba(255, 94, 0, 0.3); border-radius: 50%;
+    pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+    transition: top 0.1s ease-out, left 0.1s ease-out;
+}
+a:hover ~ #laser-cursor, button:hover ~ #laser-cursor {
+    width: 20px; height: 20px; box-shadow: 0 0 20px 5px #ff9500, 0 0 40px 10px #ff5e00;
+}
+
+@keyframes spark-move {
+    0% { left: 0%; opacity: 0.8; }
+    50% { left: 100%; opacity: 1; transform: scale(1.5); }
+    100% { left: 0%; opacity: 0.8; }
+}
+.animate-spark { animation: spark-move 0.1s infinite linear; }
+
+.etch-text {
+    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+    background-image: linear-gradient(#ff5e00, #ff9500);
+    background-repeat: no-repeat; -webkit-background-clip: text;
+    background-size: 0% 100%; transition: background-size 1s ease-out;
+}
+.etch-text.visible { background-size: 100% 100%; -webkit-text-stroke: 0px transparent; filter: drop-shadow(0 0 15px rgba(255, 94, 0, 0.5)); }
+
+.product-card { position: relative; transition: transform 0.4s ease, box-shadow 0.4s ease; overflow: hidden; }
+.product-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 0 30px rgba(255, 94, 0, 0.4); border-color: #ff5e00; }
+.product-card img { transition: filter 0.4s ease, transform 0.4s ease; filter: grayscale(80%) sepia(30%) contrast(1.2); }
+.product-card:hover img { filter: grayscale(0%) sepia(10%) contrast(1.1); transform: scale(1.05); }
